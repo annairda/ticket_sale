@@ -1,0 +1,33 @@
+<h2>Listing events</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Number of tickets</th>
+      <th>Price</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for event <- @events do %>
+    <tr>
+      <td><%= event.name %></td>
+      <td><%= event.description %></td>
+      <td><%= event.number_of_tickets %></td>
+      <td><%= event.price %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: event_path(@conn, :show, event), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: event_path(@conn, :edit, event), class: "btn btn-default btn-xs" %>
+        <%= link "Buy ticket", to: ticket_path(@conn, :new, event.id), class: "btn btn-success btn-xs" %>
+        <%= link "Delete", to: event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New event", to: event_path(@conn, :new) %>

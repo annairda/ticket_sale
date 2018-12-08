@@ -1,0 +1,19 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>Event name</th>  
+        <th>Bought by</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <%= for ticket <- @tickets do %>
+        <tr>
+        <td><%= ticket.event.name %></td>
+        <td><%= ticket.first_name%><%= ticket.last_name%></td>
+        <td></td>
+        </tr>
+        <% end %>
+        
+    </tbody>
+</table>

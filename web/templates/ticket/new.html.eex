@@ -1,0 +1,26 @@
+<div class="ticket-form">
+    <%= form_for @changeset, ticket_path(@conn, :create, @event_id), fn f -> %>
+    <div class="form-group">
+    <%= label f, :first_name, class: "control-label" %>
+    <%= text_input f, :first_name, class: "form-control" %>
+    <%= error_tag f, :first_name%> 
+    </div>
+    
+    <div class="form-group">
+    <%= label f, :last_name, class: "control-label" %>
+    <%= text_input f, :last_name, class: "form-control" %>
+    <%= error_tag f, :last_name%> 
+    </div>
+    
+    
+     <div class="form-group">
+    <%= label f, :email, class: "control-label" %>
+    <%= email_input f, :email, class: "form-control" %>
+    <%= error_tag f, :email%> 
+    </div>
+    
+    
+    
+    <%= submit "Buy ticket!" %>
+    <% end %>
+</div>
