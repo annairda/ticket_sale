@@ -19,8 +19,7 @@ defmodule TicketShop.TicketController do
         |> put_flash(:info, "Ticket created successfully.")
         |> redirect(to: ticket_path(conn, :index))
       {:error, changeset} ->
-        IO.puts changeset
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, event: changeset.event)
     end
   end
 
