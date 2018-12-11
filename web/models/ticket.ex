@@ -16,20 +16,17 @@ defmodule TicketShop.Ticket do
   Builds a changeset based on the `struct` and `params`.
   """
   def changeset(struct, params \\ %{}) do
-    new_struct = struct
+    struct
     |> cast(params, [:email, :first_name, :last_name])
     |> cast_assoc(:event)
     |> generate_code()
     |> validate_required([:event, :email, :first_name, :last_name, :code])
-#    IO.puts new_struct
-    new_struct
   end
 
   def generate_code(struct) do
-    new_code = :crypto.strong_rand_bytes(32) #generuje randomowe 32 znaki
-    |> Base.url_encode64          # koduje je aby były poprawne dla url'i
-    |> binary_part(0, 32)         # upewnia się że wzięliśmy 32 znaki a nie więcej
-    Map.put_new(struct, :code, new_code)
+    new_code = :crypto.strong_rand_bytes(32)  # generuje randomowe 32 znaki
+    |> Base.url_encode64                      # koduje je aby były poprawne dla url'i
+    |> binary_part(0, 32)                     # upewnia się że wzięliśmy 32 znaki a nie więcej
+    put_change(struct, :code, new_code)
   end
-    
 end
