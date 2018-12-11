@@ -5,6 +5,7 @@ defmodule TicketShop.TicketController do
 
   def index(conn, _params) do
     tickets = Repo.all(Ticket)
+              |> Repo.preload(:event)
     render conn, "index.html", tickets: tickets
   end
 
